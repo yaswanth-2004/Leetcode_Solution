@@ -1,30 +1,36 @@
-int trap(int* height, int heightSize) {
-   int l=0;
-   int r = heightSize-1;
-   int countWater=0;
-   int lmax=0,rmax=0;
-   while(l<r){
-    if(height[l]<height[r]){
-        if(height[l]>lmax){
-            lmax=height[l];
+int trap(int* a, int n) {
+    int l=0;
+    int r=n-1;
+    int lm=0;
+    int rm=0;
+    int res=0;
+    while(l<r)
+    {
+        if(a[l]<a[r])
+        {
+        if(lm<a[l])
+        {
+            lm=a[l];
         }
-        else{
-            countWater+=lmax-height[l];
+        else
+        {
+            res+=lm-a[l];
         }
         l++;
-    }
-    else{
-      
-            if(height[r]>rmax){
-                rmax=height[r];
+        }
+        else
+        {
+            if(a[r]>rm)
+            {
+                rm=a[r];
             }
-            else{
-                countWater+=rmax-height[r];
+            else
+            {
+                res+=rm-a[r];
             }
-        
-        r--;
+            r--;
+        }
     }
+    return res;
 
-   }
-   return countWater;
 }
